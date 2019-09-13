@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Prop List</h1>
+
+{% for prop in props %}
+<div class="card">
+    <a href="{% url 'detail' prop.id %}">
+        <div class="card-content">
+            <span class="card-title">{{ prop.name }}</span>
+            <p>Movie: {{ prop.movie }}</p>
+            <p>Description: {{ prop.description }}</p>
+            <p>Estimated Value: {{ prop.estimated_value }}</p>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+{% endblock %}
