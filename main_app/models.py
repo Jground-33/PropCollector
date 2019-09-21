@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
-
+from datetime import date
+from django.contrib.auth.models import User
 # Create your models here.
 
 
-# equivilent to Toy
+# equivalent to Toy
 class Movie(models.Model):
   name = models.CharField(max_length=50)
   category = models.CharField(max_length=20)
@@ -17,12 +18,14 @@ class Movie(models.Model):
     return reverse('movies_detail', kwargs={'pk': self.pk})
 
 
-# equivilent to Cat
+# equivalent to Cat
 class Prop(models.Model):
   name = models.CharField(max_length=100)
   movies = models.ManyToManyField(Movie)
   description = models.TextField(max_length=250)
   estimated_value = models.IntegerField()
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
   def __str__(self):
    return f"{self.name} ({self.pk})"
@@ -31,7 +34,7 @@ class Prop(models.Model):
     return reverse('detail', kwargs={'prop_id': self.pk})
   
 
-  # equivelent to feeding
+# equivalent to feeding
 class Bid(models.Model):
   date = models.DateField()
   amount = models.IntegerField()
@@ -42,3 +45,11 @@ class Bid(models.Model):
 
   class Meta:
     ordering = ['amount']
+
+
+class Photo(models.Model):
+  url = models.CharField(max_length=200)
+  prop = models.ForeignKey(Prop, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for prop_id: {self.prop_id} @{self.url}"
