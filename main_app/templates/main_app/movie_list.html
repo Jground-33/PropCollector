@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Movie List</h1>
+
+{% for movie in movie_list %}
+  <a href="{% url 'movies_detail' movie.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ movie.name }}</span>
+            <p>Category: {{ movie.category}}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
