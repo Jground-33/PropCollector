@@ -57,26 +57,6 @@ def props_detail(request, prop_id):
     'movies': movies_prop_doesnt_have,
     })
 
-# def cats_detail(request, cat_id):
-#   cat = Cat.objects.get(id=cat_id)
-#   # Get the toys the cat doesn't have
-#   toys_cat_doesnt_have = Toy.objects.exclude(id__in = cat.toys.all().values_list('id'))
-#   # Instantiate FeedingForm to be rendered in the template
-#   feeding_form = FeedingForm()
-#   return render(request, 'cats/detail.html', {
-#     # Pass the cat and feeding_form as context
-#     'cat': cat, 'feeding_form': feeding_form,
-#     # Add the toys to be displayed
-#     'toys': toys_cat_doesnt_have
-#   })
-
-
-
-
-
-
-
-
 @login_required
 def add_bid(request, prop_id):
   form = BidForm(request.POST)
